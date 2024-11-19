@@ -1,7 +1,8 @@
 package com.example.shinedown
 
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 
-class AgendaActivity : ComponentActivity() {
+class AgendaActivity : AppCompatActivity() {
 
 }
