@@ -7,10 +7,10 @@
     <!-- Definindo a cor da borda -->
     <stroke
         android:width="2dp"
-        android:color="#3680c7" /> <!-- Verde -->
+        android:color="#003680C7" /> <!-- Verde -->
 
     <!-- Definindo o fundo do Botão -->
-    <solid android:color="#3680c7"
+    <solid android:color="#003680C7"
         android:textColor="#FFFFFF" />
 
 </shape>

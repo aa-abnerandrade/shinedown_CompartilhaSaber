@@ -18,17 +18,16 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
     setContentView(R.layout.activity_main)
+    loadMainClasses()
   }
 
-  fun goToProfileActivity(v: View) {
-    Log.d("MainActivity", "goToProfileActivity")
-    val intentProfile = Intent(this, ProfileActivity::class.java)
+  fun loadMainClasses() {
+
+  }
+
+  fun goToExploreActivity(v: View) {
+    val intentProfile = Intent(this, MainActivity::class.java)
     startActivity(intentProfile)
-  }
-
-  fun goToShineActivity(v: View) {
-    val intentShine = Intent(this, ShineActivity::class.java)
-    startActivity(intentShine)
   }
 
   fun goToFavoritesActivity(v: View) {
@@ -36,9 +35,19 @@ class MainActivity : ComponentActivity() {
     startActivity(intentFavorites)
   }
 
+  fun goToShineActivity(v: View) {
+    val intentShine = Intent(this, ShineActivity::class.java)
+    startActivity(intentShine)
+  }
+
   fun goToAgendaActivity(v: View) {
     val intentAgenda = Intent(this, AgendaActivity::class.java)
     startActivity(intentAgenda)
+  }
+
+  fun goToProfileActivity(v: View) {
+    val intentProfile = Intent(this, ProfileActivity::class.java)
+    startActivity(intentProfile)
   }
 
   override fun onStart() {
