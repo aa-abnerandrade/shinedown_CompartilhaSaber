@@ -1,4 +1,10 @@
 {
-  "documents": "123456789",
-  "emails": "aluno@email.com"
+  "name": "João Silva",
+  "documents": "1234567-89",
+  "emails": "aluno@email.com",
+  "phones": "41 912345678",
+  "password": "1234567",
+  "payment": "Cartão de Crédito",
+  "notifications": false,
+  "privacy": true
 }

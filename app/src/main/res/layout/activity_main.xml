@@ -25,6 +25,7 @@
       android:layout_height="65dp"
       android:layout_marginTop="10dp"
       android:contentDescription="Logo"
+      android:padding="10dp"
       android:src="@drawable/shinedownlogo"
       app:layout_constraintBottom_toTopOf="@id/main_sectiona_edit_search"
       app:layout_constraintEnd_toEndOf="parent"
@@ -59,36 +60,45 @@
     android:layout_height="0dp"
     app:layout_constraintBottom_toTopOf="@id/main_sectionC"
     app:layout_constraintEnd_toStartOf="parent"
-    app:layout_constraintHeight_percent="0.7"
+    app:layout_constraintHeight_percent="0.75"
     app:layout_constraintTop_toBottomOf="@+id/main_sectionA"
     app:layout_constraintVertical_bias="0.34"
     app:layout_constraintWidth_default="spread">
 
     <TextView
       android:id="@+id/main_sectionb_text_main"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="90dp"
+      android:layout_height="20dp"
+      android:layout_marginTop="5dp"
+      android:layout_marginBottom="5dp"
       android:fontFamily="sans-serif-thin"
       android:text="Destaques"
       android:textAllCaps="true"
-      android:textSize="20sp"
+      android:textSize="16sp"
       android:textStyle="bold"
+      app:layout_constraintBottom_toTopOf="@+id/main_sectionb_scroll"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.263" />
 
     <ScrollView
       android:id="@+id/main_sectionb_scroll"
       android:layout_width="match_parent"
-      android:layout_height="0dp"
+      android:layout_height="600dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="5dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginBottom="10dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent">
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/main_sectionb_text_main">
 
       <TableLayout
         android:id="@+id/main_sectionb_classes"
-        android:layout_width="411dp"
-        android:layout_height="600dp"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
         android:layout_marginTop="20dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
@@ -283,7 +293,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/option_button"
+        android:background="@drawable/confirm_button"
         android:drawableTop="@drawable/ic_explore_resized"
         android:fontFamily="sans-serif-medium"
         android:onClick="goToExploreActivity"
@@ -311,14 +321,13 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/confirm_button"
+        android:background="@drawable/option_button"
+        android:drawableTop="@drawable/ic_shine_resized"
         android:fontFamily="sans-serif-medium"
         android:onClick="goToShineActivity"
-        android:padding="10dp"
         android:text="Shine!"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:iconGravity="textTop" />
+        android:textSize="14sp" />
 
       <Button
         android:id="@+id/main_sectionc_button_agenda"

@@ -295,21 +295,20 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/confirm_button"
+        android:background="@drawable/option_button"
+        android:drawableTop="@drawable/ic_shine_resized"
         android:fontFamily="sans-serif-medium"
         android:onClick="goToShineActivity"
-        android:padding="10dp"
         android:text="Shine!"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:iconGravity="textTop" />
+        android:textSize="14sp" />
 
       <Button
         android:id="@+id/agenda_sectionc_button_agenda"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/option_button"
+        android:background="@drawable/confirm_button"
         android:drawableTop="@drawable/ic_agenda_resized"
         android:fontFamily="sans-serif-medium"
         android:onClick="goToAgendaActivity"

@@ -5,6 +5,7 @@
   android:id="@+id/profile_all"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:onClick="saveProfileData"
   tools:context=".ProfileActivity">
 
 
@@ -15,34 +16,47 @@
     android:layout_height="0dp"
     android:background="#FFFFFF"
     app:layout_constraintEnd_toStartOf="parent"
-    app:layout_constraintHeight_percent="0.2"
+    app:layout_constraintHeight_percent="0.3"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintWidth_default="spread">
 
     <ImageView
       android:id="@+id/profile_sectiona_image_photo"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      tools:layout_editor_absoluteX="141dp"
-      tools:layout_editor_absoluteY="16dp"
+      android:layout_width="96dp"
+      android:layout_height="96dp"
+      android:layout_marginTop="32dp"
+      android:src="@raw/profile_photo"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
       tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-      android:id="@+id/profile_sectiona_text_name"
+    <EditText
+      android:id="@+id/profile_sectiona_edit_name"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginBottom="5dp"
       android:text="TextView"
       app:layout_constraintBottom_toTopOf="@+id/profile_sectiona_rating_stars"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/profile_sectiona_image_photo"
-      tools:layout_editor_absoluteX="177dp" />
+      app:layout_constraintVertical_bias="0.338" />
 
     <RatingBar
       android:id="@+id/profile_sectiona_rating_stars"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="20dp"
+      android:layout_marginTop="5dp"
+      android:layout_marginBottom="16dp"
+      android:numStars="5"
+      android:rating="4.5"
+      android:progressTint="#0e9574"
       app:layout_constraintBottom_toBottomOf="parent"
-      tools:layout_editor_absoluteX="85dp" />
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.497"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/profile_sectiona_edit_name" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -62,11 +76,10 @@
       android:id="@+id/profile_sectionb_text_settings"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="4dp"
       android:fontFamily="sans-serif-thin"
       android:text="Configurações"
       android:textAllCaps="true"
-      android:textSize="20sp"
+      android:textSize="18sp"
       android:textStyle="bold"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.498"
@@ -78,10 +91,13 @@
       android:id="@+id/profile_sectionb_scroll"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      app:layout_constraintBottom_toBottomOf="parent"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="10dp"
+      android:layout_marginEnd="8dp"
+      app:layout_constraintBottom_toTopOf="@id/profile_sectionb_settings_button_save"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/profile_sectionb_text_settings">
+      app:layout_constraintTop_toBottomOf="@+id/profile_sectionb_text_settings">
 
       <LinearLayout
         android:id="@+id/profile_sectionb_settings"
@@ -98,6 +114,7 @@
           android:id="@+id/profile_sectionb_settings_documents"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:layout_marginBottom="4dp"
           android:orientation="vertical">
 
           <TextView
@@ -111,31 +128,34 @@
             android:id="@+id/profile_sectionb_settings_edit_documents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:ems="10"
             android:inputType="text"
-            android:text="Name" />
+            android:text="xxx.xxx.xxx.xx" />
         </LinearLayout>
 
         <LinearLayout
           android:id="@+id/profile_sectionb_settings_emails"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:layout_marginBottom="4dp"
           android:orientation="vertical">
 
           <TextView
             android:id="@+id/profile_sectionb_settings_text_emails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Emails"
+            android:text="E-mail"
             android:textSize="18sp" />
 
           <EditText
             android:id="@+id/profile_sectionb_settings_edit_emails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:ems="10"
             android:inputType="text"
-            android:text="Name" />
+            android:text="email@email.com" />
 
         </LinearLayout>
 
@@ -143,6 +163,7 @@
           android:id="@+id/profile_sectionb_settings_phones"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:layout_marginBottom="4dp"
           android:orientation="vertical">
 
           <TextView
@@ -157,9 +178,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@android:color/transparent"
             android:ems="10"
             android:inputType="text"
-            android:text="Name" />
+            android:text="(xx) xxxxx-xxxx" />
 
         </LinearLayout>
 
@@ -167,6 +189,7 @@
           android:id="@+id/profile_sectionb_settings_password"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:layout_marginBottom="4dp"
           android:orientation="vertical">
 
           <TextView
@@ -177,9 +200,10 @@
             android:textSize="18sp" />
 
           <EditText
-            android:id="@+id/profile_sectionb_password_password"
+            android:id="@+id/profile_sectionb_settings_edit_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:ems="10"
             android:inputType="textPassword" />
         </LinearLayout>
@@ -188,6 +212,7 @@
           android:id="@+id/profile_sectionb_settings_payment"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:layout_marginBottom="4dp"
           android:orientation="vertical">
 
           <TextView
@@ -198,18 +223,20 @@
             android:textSize="18sp" />
 
           <EditText
-            android:id="@+id/profile_sectionb_edit_payment"
+            android:id="@+id/profile_sectionb_settings_edit_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:ems="10"
             android:inputType="text"
-            android:text="Name" />
+            android:text="Dados de Pagamento" />
         </LinearLayout>
 
         <LinearLayout
           android:id="@+id/profile_sectionb_settings_notifications"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:layout_marginBottom="4dp"
           android:orientation="vertical">
 
           <TextView
@@ -220,9 +247,11 @@
             android:textSize="18sp" />
 
           <Switch
-            android:id="@+id/profile_sectionb_selector_notifications"
+            android:id="@+id/profile_sectionb_settings_selector_notifications"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="E-mail"
+            android:trackTint="@color/track_color_selector" />
 
         </LinearLayout>
 
@@ -230,6 +259,7 @@
           android:id="@+id/profile_sectionb_settings_privacy"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:layout_marginBottom="4dp"
           android:orientation="vertical">
 
           <TextView
@@ -240,14 +270,32 @@
             android:textSize="18sp" />
 
           <Switch
-            android:id="@+id/profile_sectionb_selector_privacy"
+            android:id="@+id/profile_sectionb_settings_selector_privacy"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Dados Pessoais Protegidos"
+            android:trackTint="@color/track_color_selector" />
+
         </LinearLayout>
 
       </LinearLayout>
 
     </ScrollView>
+
+    <Button
+      android:id="@+id/profile_sectionb_settings_button_save"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:layout_marginBottom="16dp"
+      android:background="@drawable/confirm_button"
+      android:text="Salvar"
+      android:textColor="#FFFFFF"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/profile_sectionb_scroll" />
+
   </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -305,14 +353,13 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/confirm_button"
+        android:background="@drawable/option_button"
+        android:drawableTop="@drawable/ic_shine_resized"
         android:fontFamily="sans-serif-medium"
         android:onClick="goToShineActivity"
-        android:padding="10dp"
         android:text="Shine!"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:iconGravity="textTop" />
+        android:textSize="14sp" />
 
       <Button
         android:id="@+id/profile_sectionc_button_agenda"
@@ -334,7 +381,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/option_button"
+        android:background="@drawable/confirm_button"
         android:drawableTop="@drawable/ic_profile_resized"
         android:fontFamily="sans-serif-medium"
         android:onClick="goToProfileActivity"
