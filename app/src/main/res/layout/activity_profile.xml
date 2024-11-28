@@ -87,7 +87,7 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- ScrollView adicionado para permitir que o conteúdo tenha scroll -->
+
     <ScrollView
       android:id="@+id/profile_sectionb_scroll"
       android:layout_width="match_parent"

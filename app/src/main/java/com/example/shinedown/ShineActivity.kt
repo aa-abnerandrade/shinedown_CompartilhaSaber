@@ -3,7 +3,6 @@ package com.example.shinedown
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
@@ -13,6 +12,11 @@ class ShineActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
     setContentView(R.layout.activity_shine)
+  }
+
+  fun goToNewShineActivity(v: View) {
+    val intentProfile = Intent(this, NewShineActivity::class.java)
+    startActivity(intentProfile)
   }
 
   fun goToExploreActivity(v: View) {
