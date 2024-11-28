@@ -111,6 +111,31 @@
         tools:layout_editor_absoluteY="-86dp">
 
         <LinearLayout
+          android:id="@+id/profile_sectionb_settings_userid"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginBottom="4dp"
+          android:orientation="vertical" >
+
+          <TextView
+            android:id="@+id/profile_sectionb_settings_text_userid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Usuário"
+            android:textSize="18sp" />
+
+          <EditText
+            android:id="@+id/profile_sectionb_settings_edit_userid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:inputType="text"
+            android:enabled="false"
+            android:text="xxxxx" />
+        </LinearLayout>
+
+        <LinearLayout
           android:id="@+id/profile_sectionb_settings_documents"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
@@ -121,7 +146,7 @@
             android:id="@+id/profile_sectionb_settings_text_documents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Identidade"
+            android:text="Identificação"
             android:textSize="18sp" />
 
           <EditText
@@ -289,6 +314,7 @@
       android:layout_marginTop="16dp"
       android:layout_marginBottom="16dp"
       android:background="@drawable/confirm_button"
+      android:onClick="editProfileData"
       android:text="Salvar"
       android:textColor="#FFFFFF"
       app:layout_constraintBottom_toBottomOf="parent"
