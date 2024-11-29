@@ -98,25 +98,26 @@
       android:layout_height="300dp"
       android:layout_marginStart="8dp"
       android:layout_marginEnd="8dp"
-      android:layout_marginBottom="44dp"
+      android:layout_marginBottom="40dp"
       app:layout_constraintBottom_toTopOf="@+id/newshine_sectionb_sharemyshine_button_createnewshine"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintHorizontal_bias="1.0"
       app:layout_constraintStart_toStartOf="parent">
 
       <LinearLayout
         android:id="@+id/newshine_sectionb_sharemyshine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center_horizontal">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
           android:id="@+id/newshine_sectionb_sharemyshine_title"
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
+          android:layout_marginBottom="16dp"
           android:orientation="vertical">
 
           <TextView
@@ -125,7 +126,7 @@
             android:layout_height="wrap_content"
             android:text="Título" />
 
-          <com.google.android.material.textfield.TextInputEditText
+          <EditText
             android:id="@+id/newshine_sectionb_sharemyshine_edit_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -138,6 +139,7 @@
           android:id="@+id/newshine_sectionb_sharemyshine_value"
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
+          android:layout_marginBottom="16dp"
           android:orientation="vertical">
 
           <TextView
@@ -171,16 +173,16 @@
             android:id="@+id/newshine_sectionb_sharemyshine_button_choosephoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Escolher Imagem"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:text="Escolher Imagem" />
 
           <ImageView
             android:id="@+id/newshine_sectionb_sharemyshine_image_previewphoto"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:gravity="center"
             android:layout_marginStart="16dp"
             android:contentDescription="Imagem da Atividade"
+            android:gravity="center"
             android:visibility="gone" />
 
         </LinearLayout>
@@ -192,8 +194,14 @@
       android:id="@+id/newshine_sectionb_sharemyshine_button_createnewshine"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="16dp"
+      android:layout_marginBottom="68dp"
+      android:background="@drawable/option_button"
+      android:fontFamily="sans-serif-medium"
+      android:onClick="createNewShine"
       android:text="Shine!"
+      android:textColor="#FFFFFF"
+      android:textSize="20sp"
+      android:textStyle="bold"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent" />
@@ -214,7 +222,7 @@
 
     <Button
       android:id="@+id/newshine_sectionc_button_back"
-      android:layout_width="0dp"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:background="@drawable/confirm_button"
       android:onClick="goToShineActivity"

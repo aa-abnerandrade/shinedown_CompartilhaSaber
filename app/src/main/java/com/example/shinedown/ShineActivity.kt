@@ -2,11 +2,13 @@ package com.example.shinedown
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 
-class ShineActivity : AppCompatActivity() {
+
+class ShineActivity : ComponentActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -42,5 +44,30 @@ class ShineActivity : AppCompatActivity() {
   fun goToProfileActivity(v: View) {
     val intentProfile = Intent(this, ProfileActivity::class.java)
     startActivity(intentProfile)
+  }
+
+  override fun onStart() {
+    super.onStart();
+    Log.v("LifeCycle", "onStart")
+  }
+
+  override fun onResume() {
+    super.onResume()
+    Log.w("LifeCycle", "onResume")
+  }
+
+  override fun onPause() {
+    super.onPause()
+    Log.e("LifeCycle", "onPause")
+  }
+
+  override fun onStop() {
+    super.onStop()
+    Log.wtf("LifeCycle", "onStop")
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    Log.v("LifeCycle", "onDestroy")
   }
 }

@@ -17,6 +17,7 @@ public class ShineLessonRepository extends SQLiteOpenHelper {
     private static String COL_ID = "id";
     private static String COL_TITLE = "title";
     private static String COL_VALUE = "value";
+    private static String COL_IMAGE = "image";
 
     private Context context;
     public ShineLessonRepository(Context context) {
@@ -28,7 +29,8 @@ public class ShineLessonRepository extends SQLiteOpenHelper {
         String query = "CREATE TABLE IF NOT EXISTS " + DB_TABLE + " (" +
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_TITLE + " TEXT, " +
-                COL_VALUE + " TEXT" +
+                COL_VALUE + " TEXT, " +
+                COL_IMAGE + " TEXT" +
                 ");";
         sqLiteDatabase.execSQL(query);
     }
@@ -38,11 +40,12 @@ public class ShineLessonRepository extends SQLiteOpenHelper {
 
     }
 
-    public long createShineLessonInDB(ShineLessonModel shinelesson) {
+    public long createShineLessonOnDB(ShineLessonModel shinelesson) {
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_TITLE, shinelesson.title);
         values.put(COL_VALUE, shinelesson.value);
+        values.put(COL_IMAGE, shinelesson.image);
         long id = database.insert(DB_TABLE, null, values);
         database.close();
         return id;
