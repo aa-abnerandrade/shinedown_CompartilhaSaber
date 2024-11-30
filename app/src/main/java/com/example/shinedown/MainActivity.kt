@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.shinedown.ui.theme.ShinedownTheme
+import util.ShineLessonMock
+
 
 class MainActivity : ComponentActivity() {
 
@@ -18,11 +20,19 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
     setContentView(R.layout.activity_main)
-    loadMainClasses()
+    loadExploreSession()
   }
 
-  fun loadMainClasses() {
+  fun loadExploreSession() {
+    val shineLessons = ShineLessonMock.getMockShineLessons()
 
+    for (lesson in shineLessons) {
+      println("Título: " + lesson.title)
+      println("Valor: " + lesson.value)
+      println("Imagem: " + lesson.image)
+      println("ID do Usuário: " + lesson.userId)
+      println("---------------")
+    }
   }
 
   fun goToExploreActivity(v: View) {

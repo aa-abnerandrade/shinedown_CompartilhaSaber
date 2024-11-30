@@ -121,10 +121,11 @@
           android:orientation="vertical">
 
           <TextView
-            android:id="@+id/newshine_sectionb_sharemyshine_text_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Título" />
+              android:id="@+id/newshine_sectionb_sharemyshine_text_title"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Título"
+              android:textStyle="bold" />
 
           <EditText
             android:id="@+id/newshine_sectionb_sharemyshine_edit_title"
@@ -143,10 +144,11 @@
           android:orientation="vertical">
 
           <TextView
-            android:id="@+id/newshine_sectionb_sharemyshine_text_value"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Valor por hora (R$)" />
+              android:id="@+id/newshine_sectionb_sharemyshine_text_value"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Valor por hora (R$)"
+              android:textStyle="bold" />
 
           <EditText
             android:id="@+id/newshine_sectionb_sharemyshine_edit_value"
@@ -164,10 +166,11 @@
           android:orientation="vertical">
 
           <TextView
-            android:id="@+id/newshine_sectionb_sharemyshine_text_attachment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Foto da Atividade" />
+              android:id="@+id/newshine_sectionb_sharemyshine_text_attachment"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Foto da Atividade"
+              android:textStyle="bold" />
 
           <Button
             android:id="@+id/newshine_sectionb_sharemyshine_button_choosephoto"

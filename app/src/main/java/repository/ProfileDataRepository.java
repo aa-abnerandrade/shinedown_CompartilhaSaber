@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class ProfileDataRepository extends SQLiteOpenHelper {
-  private static final String DB_NAME = "shinedown.db";
+  private static final String DB_NAME = "shinedown.pd.db";
   public static String DB_TABLE = "profile_data";
   private static final int DB_VERSION = 1;
   public static String COL_ID = "id";
@@ -39,10 +39,10 @@ public class ProfileDataRepository extends SQLiteOpenHelper {
         COL_PRIVACYDATA + " INTEGER" +
         ");";
     sqLiteDatabase.execSQL(query);
-    createTestUser(sqLiteDatabase);
+    createTestUserOnDB(sqLiteDatabase);
   }
 
-  private void createTestUser(SQLiteDatabase sqLiteDatabase) {
+  private void createTestUserOnDB(SQLiteDatabase sqLiteDatabase) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(COL_NAME, "João Silva");
     contentValues.put(COL_CPF, "12345678900");
