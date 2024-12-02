@@ -6,10 +6,14 @@ import android.view.View
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import model.ShineLessonModel
+import service.FavoritesAdapter
 import service.FavoritesManager
 
 class FavoritesActivity : ComponentActivity() {
@@ -25,23 +29,24 @@ class FavoritesActivity : ComponentActivity() {
   fun loadFavorites() {
     val favoritesList = FavoritesManager.getInstance().getFavorites()
 
-    // Exemplo de como exibir a lista - você pode adaptar para usar um RecyclerView, TableLayout, etc.
-    val favoritesTable: TableLayout = findViewById(R.id.favorites_sectionb_favorites)
+    // Configurando o RecyclerView
+    val favoritesRecyclerView: RecyclerView = findViewById(R.id.favorites_recycler_view)
+    favoritesRecyclerView.layoutManager = LinearLayoutManager(this)
 
-    for (shine in favoritesList) {
-      val newRow = TableRow(this)
-      newRow.layoutParams = TableRow.LayoutParams(
-        TableRow.LayoutParams.MATCH_PARENT,
-        TableRow.LayoutParams.WRAP_CONTENT
-      )
-
-      val titleTextView = TextView(this)
-      titleTextView.text = shine.title
-      titleTextView.setPadding(16, 16, 16, 16)
-
-      newRow.addView(titleTextView)
-      favoritesTable.addView(newRow)
+    // Passando uma função lambda que remove o item clicado longo
+    val adapter = FavoritesAdapter(this, favoritesList) { shine ->
+      delShineFromFavorites(shine)
     }
+
+    favoritesRecyclerView.adapter = adapter
+  }
+
+  private fun delShineFromFavorites(shine: ShineLessonModel) {
+    FavoritesManager.getInstance().delFavorite(shine)
+    Toast.makeText(this, "${shine.title} removido dos favoritos!", Toast.LENGTH_SHORT).show()
+
+    // Atualiza a lista do RecyclerView
+    loadFavorites()
   }
 
   fun goToExploreActivity(v: View) {

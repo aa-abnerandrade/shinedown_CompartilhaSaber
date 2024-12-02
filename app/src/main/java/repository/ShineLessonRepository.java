@@ -148,6 +148,24 @@ public class ShineLessonRepository extends SQLiteOpenHelper {
     return shineLessonList;
   }
 
+  public boolean deleteShineLessonFromDB(long shineId) {
+    // Obter o banco de dados em modo de escrita
+    SQLiteDatabase database = getWritableDatabase();
+
+    // Definir a cláusula WHERE e os argumentos para identificar o registro a ser excluído
+    String whereClause = COL_ID + " = ?";
+    String[] whereArgs = { String.valueOf(shineId) };
+
+    // Tentar excluir o registro
+    int rowsDeleted = database.delete(DB_TABLE, whereClause, whereArgs);
+
+    // Fechar o banco de dados
+    database.close();
+
+    // Retornar true se pelo menos um registro foi excluído, false caso contrário
+    return rowsDeleted > 0;
+  }
+
 }
 
 

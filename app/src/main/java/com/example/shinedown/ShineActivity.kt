@@ -9,12 +9,14 @@ import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import model.ShineLessonModel
 import repository.ShineLessonRepository
+import service.FavoritesManager
 import util.MediaConverter
 
 
@@ -28,6 +30,8 @@ class ShineActivity : ComponentActivity() {
     setContentView(R.layout.activity_shine)
 
     loadMyShineSession()
+
+
   }
 
   fun loadMyShineSession() {
@@ -106,8 +110,30 @@ class ShineActivity : ComponentActivity() {
     newRow.addView(shineImageView)
     newRow.addView(shineLayout)
 
+    newRow.setOnLongClickListener {
+      val success = shineLessonRepository.deleteShineLessonFromDB(shine.id)
+      if (success) {
+        Toast.makeText(this, "${shine.title} removido de seu catálogo.", Toast.LENGTH_SHORT).show()
+        myShineTable.removeView(newRow) // Remover a linha diretamente da tabela
+      } else {
+        Toast.makeText(this, "Erro ao remover ${shine.title}.", Toast.LENGTH_SHORT).show()
+      }
+      true
+    }
+
     // Adiciona a TableRow ao TableLayout
     myShineTable.addView(newRow)
+  }
+
+  private fun removeShineFromMyShines(shine: ShineLessonModel) {
+    val success = shineLessonRepository.deleteShineLessonFromDB(shine.id)
+    if (success) {
+      Toast.makeText(this, "${shine.title} removido de seu catálogo.", Toast.LENGTH_SHORT).show()
+      // Remover a linha correspondente da tabela
+      loadMyShineSession() // Atualizar a exibição da tabela
+    } else {
+      Toast.makeText(this, "Erro ao remover ${shine.title}.", Toast.LENGTH_SHORT).show()
+    }
   }
 
   fun goToNewShineActivity(v: View) {

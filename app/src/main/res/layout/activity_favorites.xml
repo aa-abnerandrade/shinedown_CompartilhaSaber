@@ -74,65 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <ScrollView
-        android:id="@+id/favorites_sectionb_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/favorites_sectionb_text_favorites"
-        tools:layout_editor_absoluteX="0dp">
 
-      <TableLayout
-          android:id="@+id/favorites_sectionb_favorites"
-          android:layout_width="411dp"
-          android:layout_height="600dp"
-          android:layout_marginTop="20dp"
-          android:paddingStart="16dp"
-          android:paddingEnd="16dp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/favorites_sectionb_text_favorites">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="8dp">
-
-          <LinearLayout
-              android:layout_width="0dp"
-              android:layout_height="150dp"
-              android:layout_weight="1"
-              android:background="@drawable/violao_class"
-              android:orientation="vertical"
-              android:padding="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aula de Violão"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="R$ 50,00"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp" />
-          </LinearLayout>
-
-
-        </TableRow>
-
-
-
-      </TableLayout>
-
-    </ScrollView>
   </androidx.constraintlayout.widget.ConstraintLayout>
 
 

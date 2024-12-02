@@ -36,4 +36,10 @@ public class FavoritesManager {
   public List<ShineLessonModel> getFavorites() {
     return new ArrayList<>(favoritesList); // Retorna uma cópia para evitar modificações externas
   }
+
+  public List<ShineLessonModel> delFavorite(ShineLessonModel shine) {
+    favoritesList.remove(shine);
+    return new ArrayList<>(favoritesList);
+  }
+
 }
