@@ -22,6 +22,7 @@ class NewShineActivity: ComponentActivity() {
 
   private lateinit var editTitle: EditText
   private lateinit var editValue: EditText
+  private lateinit var editImage: EditText
   private lateinit var imagePreview: ImageView
   private lateinit var choosePhotoButton: Button
   private lateinit var dbHelper: ShineLessonRepository
@@ -41,34 +42,9 @@ class NewShineActivity: ComponentActivity() {
 
     editTitle = findViewById(R.id.newshine_sectionb_sharemyshine_edit_title)
     editValue = findViewById(R.id.newshine_sectionb_sharemyshine_edit_value)
-    imagePreview = findViewById(R.id.newshine_sectionb_sharemyshine_image_previewphoto)
-    choosePhotoButton = findViewById(R.id.newshine_sectionb_sharemyshine_button_choosephoto)
-
-    choosePhotoButton.setOnClickListener {
-      openGallery()
-    }
+    editImage = findViewById(R.id.newshine_sectionb_sharemyshine_edit_attachment)
 
   }
-
-  private fun openGallery() {
-    val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-    intent.type = "image/*"
-    startActivityForResult(intent, PICK_IMAGE_REQUEST)
-  }
-
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    super.onActivityResult(requestCode, resultCode, data)
-    if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
-      data?.data?.let { uri ->
-        selectedImageUri = uri
-        val inputStream: InputStream? = contentResolver.openInputStream(uri)
-        val bitmap = BitmapFactory.decodeStream(inputStream)
-        imagePreview.setImageBitmap(bitmap)
-        imagePreview.visibility = View.VISIBLE
-      }
-    }
-  }
-
 
 
   fun goToShineActivity(v: View) {
@@ -79,17 +55,15 @@ class NewShineActivity: ComponentActivity() {
   fun createNewShine(v: View) {
     val title = editTitle.text.toString()
     val value = editValue.text.toString()
+    val image = editImage.text.toString()
 
-    if (title.isEmpty() || value.isEmpty()) {
-      // Adicione uma verificação para garantir que os campos não estejam vazios
+    if (title.isEmpty() || value.isEmpty() || image.isEmpty()) {
+      showToast("Preencha todos os campos.")
       return
     }
 
-    // Converte a URI para uma string (pode salvar no banco de dados como string)
-    val imageUriString = selectedImageUri?.toString() ?: ""
 
-    // Cria o objeto ShineLessonModel com os dados coletados
-    val shineLesson = ShineLessonModel(title, value, imageUriString, 1)
+    val shineLesson = ShineLessonModel(title, value, image, 1)
 
     try {
       dbHelper.createShineLessonOnDB(shineLesson, USER_ID)

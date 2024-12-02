@@ -112,6 +112,42 @@ public class ShineLessonRepository extends SQLiteOpenHelper {
     return shineLessonList;
   }
 
+  public ArrayList<ShineLessonModel> getAllShineLessonByUserIdFromDB(int paramUserId) {
+    ArrayList<ShineLessonModel> shineLessonList = new ArrayList<>();
+    SQLiteDatabase database = getReadableDatabase();
+    String selection = COL_USERID + " = ? ";
+    String[] selectionArgs = { String.valueOf(paramUserId) };
+    Cursor cursor = database.query(
+        DB_TABLE,     // Tabela
+        null,         // Colunas (null para todas)
+        selection,    // Cláusula WHERE
+        selectionArgs,// Argumentos da cláusula WHERE
+        null,         // Group by
+        null,         // Having
+        null          // Order by
+    );
+
+    if (cursor.moveToFirst()) {
+      do {
+        @SuppressLint("Range") long id = cursor.getLong(cursor.getColumnIndex(COL_ID));
+        @SuppressLint("Range") String title = cursor.getString(cursor.getColumnIndex(COL_TITLE));
+        @SuppressLint("Range") String value = cursor.getString(cursor.getColumnIndex(COL_VALUE));
+        @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(COL_IMAGE));
+        @SuppressLint("Range") int userId = cursor.getInt(cursor.getColumnIndex(COL_USERID));
+
+        // Cria um ShineLessonModel com os valores recuperados
+        ShineLessonModel shineLesson = new ShineLessonModel(id, title, value, image, userId);
+        shineLessonList.add(shineLesson);
+      } while (cursor.moveToNext());
+    }
+
+    // Fecha o cursor e o banco de dados
+    cursor.close();
+    database.close();
+
+    return shineLessonList;
+  }
+
 }
 
 

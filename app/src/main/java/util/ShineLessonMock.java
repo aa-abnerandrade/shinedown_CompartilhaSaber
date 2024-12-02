@@ -18,6 +18,7 @@ public class ShineLessonMock {
         mockShineLessonModel.add(new ShineLessonModel("Pilates para Crianças", "R$ 60,00", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp60JEbLGvNRmuW_pCGABy5lZ7hP4p8jvT1w&s", 2));
         mockShineLessonModel.add(new ShineLessonModel("Workshop de Desenho Artístico", "R$ 80,00", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWV7VtWsQ31VrgJLzr5ImZhLo6OlmBrnfT-Q&s", 9));
         mockShineLessonModel.add(new ShineLessonModel("Doces Caseiros: Receitas Fáceis", "R$ 100,00", "https://s2.glbimg.com/kR2oEqc6GOUP2Kvmt1UBYMPzXoI=/620x345/e.glbimg.com/og/ed/f/original/2022/08/25/boleira_fernanda_yamao_1.jpg", 8));
+        mockShineLessonModel.add(new ShineLessonModel("Meditação contra Ansiedade", "R$ 10,00", "https://img.freepik.com/fotos-gratis/mulher-de-alto-angulo-meditando-em-casa_23-2150404951.jpg", 1));
 
         return mockShineLessonModel;
     }

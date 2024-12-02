@@ -23,17 +23,16 @@ class ShineActivity : ComponentActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    shineLessonRepository = ShineLessonRepository(this)
     enableEdgeToEdge()
     setContentView(R.layout.activity_shine)
-    shineLessonRepository = ShineLessonRepository(this)
 
     loadMyShineSession()
   }
 
   fun loadMyShineSession() {
-    val allShineLesson: ArrayList<ShineLessonModel> = shineLessonRepository.getAllShineLessonFromDB()
+    val allShineLesson: ArrayList<ShineLessonModel> = shineLessonRepository.getAllShineLessonByUserIdFromDB(1)
 
-    // Iterando e imprimindo os Shines para verificação
     for (shine in allShineLesson) {
       createRowOnMyShineTable(shine)
       println("Título: ${shine.title}")
