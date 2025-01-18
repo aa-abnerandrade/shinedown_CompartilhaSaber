@@ -27,7 +27,7 @@ import util.ShineLessonMock
 
 class MainActivity : ComponentActivity() {
   private lateinit var shineLessonRepository: ShineLessonRepository
-  //private val favoritesList = ArrayList<ShineLessonModel>() // Lista para armazenar aulas favoritas
+  //private val favoritesList = ArrayList<ShineLessonModel>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -55,10 +55,7 @@ class MainActivity : ComponentActivity() {
   }
 
   fun createRowOnMyShineTable(shine: ShineLessonModel) {
-    // Primeiro, vamos obter a referência da TableLayout do layout XML
     val myShineTable: TableLayout = findViewById(R.id.main_sectionb_classes)
-
-    // Criar uma nova TableRow programaticamente
     val newRow = TableRow(this)
     newRow.layoutParams = TableRow.LayoutParams(
       TableRow.LayoutParams.MATCH_PARENT,
@@ -66,68 +63,57 @@ class MainActivity : ComponentActivity() {
     )
     newRow.setPadding(8, 8, 8, 8)
 
-    // Criar um ImageView para a imagem do ShineLesson
     val shineImageView = ImageView(this)
     shineImageView.layoutParams = TableRow.LayoutParams(
-      0, // width 0 para suportar layout_weight
+      0, // width
       LinearLayout.LayoutParams.WRAP_CONTENT,
-      1.0f // weight para ocupar 1 parte da largura da linha
+      1.0f // weight
     )
     shineImageView.scaleType = ImageView.ScaleType.CENTER_CROP
     shineImageView.adjustViewBounds = true
     shineImageView.setPadding(16, 16, 16, 16)
 
-    // Usar Glide para carregar a imagem da URL
+    // carregar a imagem da URL
     if (shine.image.isNotEmpty()) {
       Glide.with(this)
-        .load(shine.image) // Carrega a URL da imagem
-        .placeholder(android.R.drawable.ic_menu_gallery) // Placeholder enquanto carrega
-        .error(android.R.drawable.ic_menu_report_image) // Imagem de erro caso falhe ao carregar
+        .load(shine.image)
+        .placeholder(android.R.drawable.ic_menu_gallery)
+        .error(android.R.drawable.ic_menu_report_image)
         .into(shineImageView) // Carrega a imagem no ImageView
     }
 
-    // Criar um LinearLayout para conter os elementos, como título e valor
     val shineLayout = LinearLayout(this)
     shineLayout.orientation = LinearLayout.VERTICAL
     shineLayout.layoutParams = TableRow.LayoutParams(
-      0, // width 0 para suportar layout_weight
+      0, // width
       LinearLayout.LayoutParams.MATCH_PARENT,
-      2.0f // weight para ocupar 2 partes da largura da linha
+      2.0f // weigt
     )
     shineLayout.setPadding(16, 16, 16, 16)
 
-    // Criar um TextView para o título do Shine
     val titleTextView = TextView(this)
     titleTextView.text = shine.title
     titleTextView.setTextColor(ContextCompat.getColor(this, android.R.color.black))
     titleTextView.textSize = 18f
     titleTextView.setTypeface(null, android.graphics.Typeface.BOLD)
 
-    // Criar um TextView para o valor do Shine
     val valueTextView = TextView(this)
     valueTextView.text = "R$ ${shine.value}"
     valueTextView.setTextColor(ContextCompat.getColor(this, android.R.color.black))
     valueTextView.textSize = 14f
-
-    // Adiciona os TextViews ao LinearLayout
     shineLayout.addView(titleTextView)
     shineLayout.addView(valueTextView)
-
-    // Adiciona o ImageView e o LinearLayout à TableRow
     newRow.addView(shineImageView)
     newRow.addView(shineLayout)
-
-    // Adiciona o clique longo para adicionar a aula à lista de favoritos
     newRow.setOnLongClickListener {
       addShineToFavorites(shine)
-      true // Retorna true para indicar que o clique longo foi tratado
+      true
     }
 
-    // Adiciona a TableRow ao TableLayout
     myShineTable.addView(newRow)
   }
 
-  // Função para adicionar um ShineLessonModel à lista de favoritos
+  // adicionar 1 ShineLessonModel na lista de favs
   private fun addShineToFavorites(shine: ShineLessonModel) {
     FavoritesManager.getInstance().addFavorite(shine)
     Toast.makeText(this, "${shine.title} adicionado aos favoritos!", Toast.LENGTH_SHORT).show()

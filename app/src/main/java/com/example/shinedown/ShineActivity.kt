@@ -16,8 +16,7 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import model.ShineLessonModel
 import repository.ShineLessonRepository
-import service.FavoritesManager
-import util.MediaConverter
+
 
 
 class ShineActivity : ComponentActivity() {
@@ -28,9 +27,7 @@ class ShineActivity : ComponentActivity() {
     shineLessonRepository = ShineLessonRepository(this)
     enableEdgeToEdge()
     setContentView(R.layout.activity_shine)
-
     loadMyShineSession()
-
 
   }
 
@@ -48,10 +45,8 @@ class ShineActivity : ComponentActivity() {
   }
 
   fun createRowOnMyShineTable(shine: ShineLessonModel) {
-    // Primeiro, vamos obter a referência da TableLayout do layout XML
     val myShineTable: TableLayout = findViewById(R.id.shine_sectionb_myshines)
 
-    // Criar uma nova TableRow programaticamente
     val newRow = TableRow(this)
     newRow.layoutParams = TableRow.LayoutParams(
       TableRow.LayoutParams.MATCH_PARENT,
@@ -59,69 +54,69 @@ class ShineActivity : ComponentActivity() {
     )
     newRow.setPadding(8, 8, 8, 8)
 
-    // Criar um ImageView para a imagem do ShineLesson
+    // prev para a imagem do ShineLesson
     val shineImageView = ImageView(this)
+    // width e weight
     shineImageView.layoutParams = TableRow.LayoutParams(
-      0, // width 0 para suportar layout_weight
+      0,
       LinearLayout.LayoutParams.WRAP_CONTENT,
-      1.0f // weight para ocupar 1 parte da largura da linha
+      1.0f
     )
     shineImageView.scaleType = ImageView.ScaleType.CENTER_CROP
     shineImageView.adjustViewBounds = true
     shineImageView.setPadding(16, 16, 16, 16)
 
-    // Usar Glide para carregar a imagem da URL
+    // GLIDE
     if (shine.image.isNotEmpty()) {
       Glide.with(this)
-        .load(shine.image) // Carrega a URL da imagem
-        .placeholder(android.R.drawable.ic_menu_gallery) // Placeholder enquanto carrega
-        .error(android.R.drawable.ic_menu_report_image) // Imagem de erro caso falhe ao carregar
-        .into(shineImageView) // Carrega a imagem no ImageView
+        .load(shine.image) // Carrega
+        .placeholder(android.R.drawable.ic_menu_gallery) // Placeholder
+        .error(android.R.drawable.ic_menu_report_image)
+        .into(shineImageView) // exibe
     }
 
-    // Criar um LinearLayout para conter os elementos, como título e valor
+
     val shineLayout = LinearLayout(this)
     shineLayout.orientation = LinearLayout.VERTICAL
     shineLayout.layoutParams = TableRow.LayoutParams(
-      0, // width 0 para suportar layout_weight
+      0, // d
       LinearLayout.LayoutParams.MATCH_PARENT,
-      2.0f // weight para ocupar 2 partes da largura da linha
+      2.0f // g
     )
     shineLayout.setPadding(16, 16, 16, 16)
 
-    // Criar um TextView para o título do Shine
+
     val titleTextView = TextView(this)
     titleTextView.text = shine.title
     titleTextView.setTextColor(ContextCompat.getColor(this, android.R.color.black))
     titleTextView.textSize = 18f
     titleTextView.setTypeface(null, android.graphics.Typeface.BOLD)
 
-    // Criar um TextView para o valor do Shine
+
     val valueTextView = TextView(this)
     valueTextView.text = "R$ ${shine.value}"
     valueTextView.setTextColor(ContextCompat.getColor(this, android.R.color.black))
     valueTextView.textSize = 14f
 
-    // Adiciona os TextViews ao LinearLayout
+
     shineLayout.addView(titleTextView)
     shineLayout.addView(valueTextView)
 
-    // Adiciona o ImageView e o LinearLayout à TableRow
+
     newRow.addView(shineImageView)
     newRow.addView(shineLayout)
 
     newRow.setOnLongClickListener {
       val success = shineLessonRepository.deleteShineLessonFromDB(shine.id)
       if (success) {
-        Toast.makeText(this, "${shine.title} removido de seu catálogo.", Toast.LENGTH_SHORT).show()
-        myShineTable.removeView(newRow) // Remover a linha diretamente da tabela
+        Toast.makeText(this, "${shine.title} removido do seu catálogo.", Toast.LENGTH_SHORT).show()
+        myShineTable.removeView(newRow) // !!! já remover diretamente da tbl
       } else {
         Toast.makeText(this, "Erro ao remover ${shine.title}.", Toast.LENGTH_SHORT).show()
       }
       true
     }
 
-    // Adiciona a TableRow ao TableLayout
     myShineTable.addView(newRow)
   }
 

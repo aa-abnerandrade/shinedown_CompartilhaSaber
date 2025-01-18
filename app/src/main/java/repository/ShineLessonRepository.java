@@ -118,13 +118,13 @@ public class ShineLessonRepository extends SQLiteOpenHelper {
     String selection = COL_USERID + " = ? ";
     String[] selectionArgs = { String.valueOf(paramUserId) };
     Cursor cursor = database.query(
-        DB_TABLE,     // Tabela
-        null,         // Colunas (null para todas)
-        selection,    // Cláusula WHERE
-        selectionArgs,// Argumentos da cláusula WHERE
-        null,         // Group by
-        null,         // Having
-        null          // Order by
+        DB_TABLE,     // tbl
+        null,         // Cols
+        selection,    // WHERE
+        selectionArgs,// Args do WHERE
+        null,         // groupby
+        null,         // having
+        null          // order by
     );
 
     if (cursor.moveToFirst()) {
@@ -135,13 +135,13 @@ public class ShineLessonRepository extends SQLiteOpenHelper {
         @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(COL_IMAGE));
         @SuppressLint("Range") int userId = cursor.getInt(cursor.getColumnIndex(COL_USERID));
 
-        // Cria um ShineLessonModel com os valores recuperados
+        // cria um SLModel com os valores recuperados
         ShineLessonModel shineLesson = new ShineLessonModel(id, title, value, image, userId);
         shineLessonList.add(shineLesson);
       } while (cursor.moveToNext());
     }
 
-    // Fecha o cursor e o banco de dados
+
     cursor.close();
     database.close();
 
@@ -149,20 +149,15 @@ public class ShineLessonRepository extends SQLiteOpenHelper {
   }
 
   public boolean deleteShineLessonFromDB(long shineId) {
-    // Obter o banco de dados em modo de escrita
+
     SQLiteDatabase database = getWritableDatabase();
 
-    // Definir a cláusula WHERE e os argumentos para identificar o registro a ser excluído
+    // excluir por shineid
     String whereClause = COL_ID + " = ?";
     String[] whereArgs = { String.valueOf(shineId) };
 
-    // Tentar excluir o registro
     int rowsDeleted = database.delete(DB_TABLE, whereClause, whereArgs);
-
-    // Fechar o banco de dados
     database.close();
-
-    // Retornar true se pelo menos um registro foi excluído, false caso contrário
     return rowsDeleted > 0;
   }
 

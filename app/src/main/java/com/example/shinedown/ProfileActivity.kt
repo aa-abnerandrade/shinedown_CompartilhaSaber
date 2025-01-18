@@ -102,7 +102,7 @@ class ProfileActivity : ComponentActivity() {
       val privacyData = cursor.getInt(cursor.getColumnIndex(ProfileDataRepository.COL_PRIVACYDATA))
 
       Log.v("ProfileActivity", "Passou 5")
-      // Preencher os campos EditText
+      // Preencher cada campo
       editId.setText(id.toString())
       editName.setText(name)
       editDocuments.setText(cpf)
@@ -123,7 +123,7 @@ class ProfileActivity : ComponentActivity() {
     try {
       val id = editId.text.toString().toLongOrNull() ?: throw IllegalArgumentException("ProfileActivity ---> editProfileData ---> ID inválido")
       val name = editName.text.toString()
-      val cpf = editDocuments.text.toString() // Mantendo CPF como String para evitar erros de formatação
+      val cpf = editDocuments.text.toString()
       val email = editEmails.text.toString()
       val phone = editPhones.text.toString()
       val password = editPassword.text.toString()

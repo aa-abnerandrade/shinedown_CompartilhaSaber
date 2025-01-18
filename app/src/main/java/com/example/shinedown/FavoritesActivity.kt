@@ -23,17 +23,13 @@ class FavoritesActivity : ComponentActivity() {
     setContentView(R.layout.activity_favorites)
 
     loadFavorites()
-
   }
 
   fun loadFavorites() {
     val favoritesList = FavoritesManager.getInstance().getFavorites()
-
-    // Configurando o RecyclerView
     val favoritesRecyclerView: RecyclerView = findViewById(R.id.favorites_recycler_view)
     favoritesRecyclerView.layoutManager = LinearLayoutManager(this)
 
-    // Passando uma função lambda que remove o item clicado longo
     val adapter = FavoritesAdapter(this, favoritesList) { shine ->
       delShineFromFavorites(shine)
     }
@@ -45,7 +41,6 @@ class FavoritesActivity : ComponentActivity() {
     FavoritesManager.getInstance().delFavorite(shine)
     Toast.makeText(this, "${shine.title} removido dos favoritos!", Toast.LENGTH_SHORT).show()
 
-    // Atualiza a lista do RecyclerView
     loadFavorites()
   }
 

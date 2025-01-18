@@ -24,9 +24,9 @@ class FavoritesAdapter(
         val shine = favoritesList[position]
         holder.bind(shine)
 
-        // Adiciona o Listener para clique longo
+        // clique looongo
         holder.itemView.setOnLongClickListener {
-            onLongClickListener(shine) // Chama a função lambda que lida com a remoção
+            onLongClickListener(shine)
             true
         }
     }
